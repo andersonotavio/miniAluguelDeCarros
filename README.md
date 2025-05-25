@@ -88,6 +88,3 @@ Fique à vontade para contribuir com este projeto! Se você encontrar bugs, tive
 
 ---
 
-## 📄 Licença
-
-Este projeto está licenciado sob a licença [Nome da Licença, por exemplo, MIT License]. Consulte o arquivo `LICENSE` para mais detalhes. *(Crie um arquivo LICENSE no seu repositório se ainda não tiver um!)*
