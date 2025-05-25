@@ -4,10 +4,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MiniAlugelDeCarrosApplication {
+public class MiniAluguelDeCarrosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MiniAlugelDeCarrosApplication.class, args);
+
+		SpringApplication.run(MiniAluguelDeCarrosApplication.class, args);
+		System.out.println("API Running");
 	}
 
 }

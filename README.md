@@ -28,6 +28,7 @@ O esquema do banco de dados foi projetado com as seguintes entidades e relaciona
     * `id` (Chave Primária)
     * `marca`
     * `modelo`
+    * `ano`
     * `status` (Indicando se está disponível, alugado, etc.)
     * **Relacionamento**: Um `Carro` pode ser alugado por **apenas um** `Cliente`.
 
