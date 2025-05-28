@@ -2,11 +2,16 @@ package com.otavioweb.miniAlugelDeCarros.Carros;
 
 import com.otavioweb.miniAlugelDeCarros.Cliente.ClienteModel;
 import jakarta.persistence.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "tb_carros")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class CarroModel {
 
   @Id
@@ -21,36 +26,5 @@ public class CarroModel {
   @JoinColumn(name = "cliente_id")
   private ClienteModel clientes;
 
-  public CarroModel() {
-  }
 
-  public CarroModel(int ano, String modelo, String marca) {
-    this.ano = ano;
-    this.modelo = modelo;
-    this.marca = marca;
-  }
-
-  public int getAno() {
-    return ano;
-  }
-
-  public void setAno(int ano) {
-    this.ano = ano;
-  }
-
-  public String getModelo() {
-    return modelo;
-  }
-
-  public void setModelo(String modelo) {
-    this.modelo = modelo;
-  }
-
-  public String getMarca() {
-    return marca;
-  }
-
-  public void setMarca(String marca) {
-    this.marca = marca;
-  }
 }
