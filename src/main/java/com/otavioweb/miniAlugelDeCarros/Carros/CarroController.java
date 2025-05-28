@@ -1,4 +1,4 @@
-package com.otavioweb.miniAlugelDeCarros;
+package com.otavioweb.miniAlugelDeCarros.Carros;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

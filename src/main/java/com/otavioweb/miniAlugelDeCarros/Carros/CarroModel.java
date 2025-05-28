@@ -1,6 +1,9 @@
-package com.otavioweb.miniAlugelDeCarros;
+package com.otavioweb.miniAlugelDeCarros.Carros;
 
+import com.otavioweb.miniAlugelDeCarros.Cliente.ClienteModel;
 import jakarta.persistence.*;
+
+
 
 @Entity
 @Table(name = "tb_carros")
@@ -12,6 +15,11 @@ public class CarroModel {
   private String marca;
   private String modelo;
   private int ano;
+
+  //Um carro tem um unico cliente
+  @ManyToOne
+  @JoinColumn(name = "cliente_id")
+  private ClienteModel clientes;
 
   public CarroModel() {
   }
