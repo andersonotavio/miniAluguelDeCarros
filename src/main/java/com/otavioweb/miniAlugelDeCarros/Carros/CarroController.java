@@ -3,6 +3,7 @@ package com.otavioweb.miniAlugelDeCarros.Carros;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("carro")
 public class CarroController {
   @GetMapping("/")
   public String welcome(){
@@ -10,32 +11,32 @@ public class CarroController {
   }
 
   //Adicionar carro (CREATE)
-  @PostMapping("/adicionar-carro")
+  @PostMapping("/adicionar")
   public String adicionar(){
     return "Carro adicionado";
   }
   
   //Mostrar todos os carros (READ)
-  @GetMapping("/carros")
+  @GetMapping("/todos")
   public String allCarros(){
     return "Todos os carros";
   }
 
   //Mostrar carro por ID (READ)
-  @GetMapping("/carro")
+  @GetMapping("/listar")
   public String mostarCarroPorId(){
-    return "Mostar carro por Id";
+    return "Mostando carros";
   }
 
   //Atualizar carro (UPDATE)
-  @PutMapping("/alterar-carro")
+  @PutMapping("/alterar")
   public String alterarCarroPorId(){
-    return "Alterar carro por Id";
+    return "Alterado";
   }
 
   //Deletar carro (DELETE)
-  @DeleteMapping("/deletar-carro")
+  @DeleteMapping("/deletar")
   public String deletarCarroPorId(){
-    return "Deletar carro por Id";
+    return "Carro deletado";
   }
 }

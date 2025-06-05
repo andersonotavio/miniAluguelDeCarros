@@ -3,36 +3,37 @@ package com.otavioweb.miniAlugelDeCarros.Cliente;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("cliente")
 public class ClienteController {
 
 
   //Adicionar cliente (CREATE)
-  @PostMapping("/adicionar-cliente")
-  public String adicionar(){
-    return "Carro adicionado";
+  @PostMapping("/adicionar")
+  public String adicionarCliente(){
+    return "Cliente adicionado";
   }
 
   //Mostrar todos os cliente (READ)
-  @GetMapping("/clientes")
+  @GetMapping("/todos")
   public String allClientes(){
-    return "Todos os carros";
+    return "Todos os clientes";
   }
 
   //Mostrar cliente por ID (READ)
-  @GetMapping("/cliente")
+  @GetMapping("/listar")
   public String mostarClientePorId(){
-    return "Mostar carro por Id";
+    return "Mostar cliente por Id";
   }
 
   //Atualizar cliente (UPDATE)
-  @PutMapping("/alterar-cliente")
+  @PutMapping("/alterar")
   public String alterarClientePorId(){
-    return "Alterar carro por Id";
+    return "Alterado";
   }
 
   //Deletar cliente (DELETE)
-  @DeleteMapping("deletar-cliente")
+  @DeleteMapping("/deletar")
   public String deletarClientePorId(){
-    return "Deletar carro por Id";
+    return "Deletado";
   }
 }
