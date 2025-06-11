@@ -21,4 +21,8 @@ public class ClienteService {
     Optional<ClienteModel> clientePorId = clienteRepository.findById(id);
     return clientePorId.orElse(null);
   }
+
+  public ClienteModel cadastrarCliente(ClienteModel cliente){
+    return clienteRepository.save(cliente);
+  }
 }

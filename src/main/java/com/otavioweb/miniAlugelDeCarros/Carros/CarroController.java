@@ -20,8 +20,8 @@ public class CarroController {
 
   //Adicionar carro (CREATE)
   @PostMapping("/adicionar")
-  public String adicionar(){
-    return "Carro adicionado";
+  public CarroModel adicionarCarro(@RequestBody CarroModel carro){
+    return carroService.adicionarCarro(carro);
   }
   
   //Mostrar todos os carros (READ)

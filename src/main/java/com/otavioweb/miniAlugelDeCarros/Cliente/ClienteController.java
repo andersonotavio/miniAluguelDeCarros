@@ -15,12 +15,13 @@ public class ClienteController {
 
   //Adicionar cliente (CREATE)
   @PostMapping("/adicionar")
-  public String adicionarCliente(){
-    return "Cliente adicionado";
+  public ClienteModel cadastrarCliente(@RequestBody ClienteModel cliente){
+
+    return clienteService.cadastrarCliente(cliente);
   }
 
   //Mostrar todos os cliente (READ)
-  @GetMapping("/todos")
+  @GetMapping("/listar")
   public List<ClienteModel> listarClientes(){
     return clienteService.listarClientes();
   }

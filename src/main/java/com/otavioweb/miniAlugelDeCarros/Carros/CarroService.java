@@ -13,11 +13,17 @@ public class CarroService {
     this.carroRepository = carroRepository;
   }
 
+  // Listar carros
   public List<CarroModel> listarCarros(){
     return carroRepository.findAll();
   }
+  //Listar carro por ID
   public CarroModel listarCarroPorId(Long id){
     Optional<CarroModel> carroPorId = carroRepository.findById(id);
     return carroPorId.orElse(null);
+  }
+
+  public CarroModel adicionarCarro(CarroModel carro){
+    return carroRepository.save(carro);
   }
 }
