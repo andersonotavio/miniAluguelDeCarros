@@ -1,5 +1,6 @@
 package com.otavioweb.miniAlugelDeCarros.Cliente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.otavioweb.miniAlugelDeCarros.Carros.CarroModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class ClienteModel {
 
   //Um cliente pode alugar mais de um carro
   @OneToMany(mappedBy = "clientes")
+  @JsonIgnore
   private List<CarroModel> carro;
 
 }

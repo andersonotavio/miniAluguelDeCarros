@@ -2,10 +2,16 @@ package com.otavioweb.miniAlugelDeCarros.Cliente;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("cliente")
 public class ClienteController {
+  private ClienteService clienteService;
 
+  public ClienteController(ClienteService clienteService) {
+    this.clienteService = clienteService;
+  }
 
   //Adicionar cliente (CREATE)
   @PostMapping("/adicionar")
@@ -15,14 +21,15 @@ public class ClienteController {
 
   //Mostrar todos os cliente (READ)
   @GetMapping("/todos")
-  public String allClientes(){
-    return "Todos os clientes";
+  public List<ClienteModel> listarClientes(){
+    return clienteService.listarClientes();
   }
 
   //Mostrar cliente por ID (READ)
-  @GetMapping("/listar")
-  public String mostarClientePorId(){
-    return "Mostar cliente por Id";
+  @GetMapping("/listar/{id}")
+  public ClienteModel mostarClientePorId(@PathVariable Long id){
+
+    return clienteService.listarClientePorId(id);
   }
 
   //Atualizar cliente (UPDATE)

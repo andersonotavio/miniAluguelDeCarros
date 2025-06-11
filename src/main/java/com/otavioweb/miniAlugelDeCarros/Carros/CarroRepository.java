@@ -1,4 +1,6 @@
 package com.otavioweb.miniAlugelDeCarros.Carros;
 
-public interface CarroRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CarroRepository extends JpaRepository<CarroModel, Long> {
 }

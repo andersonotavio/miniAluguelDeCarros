@@ -2,9 +2,17 @@ package com.otavioweb.miniAlugelDeCarros.Carros;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("carro")
 public class CarroController {
+  private CarroService carroService;
+
+  public CarroController(CarroService carroService) {
+    this.carroService = carroService;
+  }
+
   @GetMapping("/")
   public String welcome(){
     return "Welcome my app";
@@ -17,15 +25,15 @@ public class CarroController {
   }
   
   //Mostrar todos os carros (READ)
-  @GetMapping("/todos")
-  public String allCarros(){
-    return "Todos os carros";
+  @GetMapping("/listar")
+  public List<CarroModel> listarCarros(){
+    return carroService.listarCarros();
   }
 
   //Mostrar carro por ID (READ)
-  @GetMapping("/listar")
-  public String mostarCarroPorId(){
-    return "Mostando carros";
+  @GetMapping("/listar/{id}")
+  public CarroModel mostarCarroPorId(@PathVariable Long id){
+    return carroService.listarCarroPorId(id);
   }
 
   //Atualizar carro (UPDATE)
