@@ -26,4 +26,8 @@ public class CarroService {
   public CarroModel adicionarCarro(CarroModel carro){
     return carroRepository.save(carro);
   }
+
+  public void deletarCarro(Long id){
+    carroRepository.deleteById(id);
+  }
 }

@@ -25,4 +25,7 @@ public class ClienteService {
   public ClienteModel cadastrarCliente(ClienteModel cliente){
     return clienteRepository.save(cliente);
   }
+  public void deletarCliente(Long id){
+    clienteRepository.deleteById(id);
+  }
 }

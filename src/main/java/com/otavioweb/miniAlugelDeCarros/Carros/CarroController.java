@@ -43,8 +43,9 @@ public class CarroController {
   }
 
   //Deletar carro (DELETE)
-  @DeleteMapping("/deletar")
-  public String deletarCarroPorId(){
+  @DeleteMapping("/deletar/{id}")
+  public String deletarCarroPorId(@PathVariable Long id){
+    carroService.deletarCarro(id);
     return "Carro deletado";
   }
 }
