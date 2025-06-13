@@ -37,9 +37,10 @@ public class CarroController {
   }
 
   //Atualizar carro (UPDATE)
-  @PutMapping("/alterar")
-  public String alterarCarroPorId(){
-    return "Alterado";
+  @PutMapping("/alterar/{id}")
+  public CarroModel alterarCarroPorId(@PathVariable Long id, @RequestBody CarroModel carroAlterado ){
+
+    return carroService.atualizarCarro(id, carroAlterado);
   }
 
   //Deletar carro (DELETE)

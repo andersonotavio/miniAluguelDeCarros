@@ -30,4 +30,12 @@ public class CarroService {
   public void deletarCarro(Long id){
     carroRepository.deleteById(id);
   }
+
+  public CarroModel atualizarCarro(Long id, CarroModel alterarCarro){
+    if(carroRepository.existsById(id)){
+      alterarCarro.setId(id);
+      return carroRepository.save(alterarCarro);
+    }
+    return null;
+  }
 }

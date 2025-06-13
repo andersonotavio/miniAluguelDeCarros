@@ -27,4 +27,7 @@ public class CarroModel {
   private ClienteModel clientes;
 
 
+  public void setId(Long id) {
+    this.id = id;
+  }
 }
