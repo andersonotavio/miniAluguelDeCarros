@@ -20,7 +20,7 @@ public class CarroModel {
   private String marca;
   private String modelo;
   private int ano;
-
+  private String status;
   //Um carro tem um unico cliente
   @ManyToOne
   @JoinColumn(name = "cliente_id")
