@@ -6,28 +6,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Entity
-@Table(name = "tb_carros")
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class CarroModel {
+@AllArgsConstructor
+@NoArgsConstructor
+public class CarroDTO {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String marca;
   private String modelo;
   private int ano;
   private String status;
-  //Um carro tem um unico cliente
-  @ManyToOne
-  @JoinColumn(name = "cliente_id")
   private ClienteModel clientes;
-
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 }
