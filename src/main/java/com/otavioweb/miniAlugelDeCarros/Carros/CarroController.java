@@ -40,6 +40,7 @@ public class CarroController {
   @PutMapping("/alterar/{id}")
   public CarroDTO alterarCarroPorId(@PathVariable Long id, @RequestBody CarroDTO carroAtualizado){
     return carroService.atualizarCarro(id, carroAtualizado);
+
   }
 
   //Deletar carro (DELETE)
