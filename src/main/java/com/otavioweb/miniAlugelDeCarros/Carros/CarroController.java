@@ -20,7 +20,7 @@ public class CarroController {
 
   //Adicionar carro (CREATE)
   @PostMapping("/adicionar")
-  public CarroModel adicionarCarro(@RequestBody CarroModel carro){
+  public CarroDTO adicionarCarro(@RequestBody CarroDTO carro){
     return carroService.adicionarCarro(carro);
   }
   
