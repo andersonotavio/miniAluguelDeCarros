@@ -26,20 +26,20 @@ public class CarroController {
   
   //Mostrar todos os carros (READ)
   @GetMapping("/listar")
-  public List<CarroModel> listarCarros(){
+  public List<CarroDTO> listarCarros(){
     return carroService.listarCarros();
   }
 
   //Mostrar carro por ID (READ)
   @GetMapping("/listar/{id}")
-  public CarroModel mostarCarroPorId(@PathVariable Long id){
+  public CarroDTO mostarCarroPorId(@PathVariable Long id){
     return carroService.listarCarroPorId(id);
   }
 
   //Atualizar carro (UPDATE)
-  @PutMapping("/alterar")
-  public String alterarCarroPorId(){
-    return "Alterado";
+  @PutMapping("/alterar/{id}")
+  public CarroDTO alterarCarroPorId(@PathVariable Long id, @RequestBody CarroDTO carroAtualizado){
+    return carroService.atualizarCarro(id, carroAtualizado);
   }
 
   //Deletar carro (DELETE)
