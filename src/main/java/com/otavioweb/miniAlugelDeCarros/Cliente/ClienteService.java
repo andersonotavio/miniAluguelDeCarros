@@ -1,9 +1,11 @@
 package com.otavioweb.miniAlugelDeCarros.Cliente;
 
+import com.otavioweb.miniAlugelDeCarros.Carros.CarroModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -15,13 +17,17 @@ public class ClienteService {
     this.clienteMapper = clienteMapper;
   }
 
-  public List<ClienteModel> listarClientes(){
-    return clienteRepository.findAll();
+  public List<ClienteDTO> listarClientes(){
+    List<ClienteModel> clientes = clienteRepository.findAll();
+    return clientes.stream()
+            .map(clienteMapper::map)
+            .collect(Collectors.toList());
+
   }
 
-  public ClienteModel listarClientePorId(Long id){
+  public ClienteDTO listarClientePorId(Long id){
     Optional<ClienteModel> clientePorId = clienteRepository.findById(id);
-    return clientePorId.orElse(null);
+    return clientePorId.map(clienteMapper::map).orElse(null);
   }
 
   public ClienteDTO cadastrarCliente(ClienteDTO clienteDTO){
@@ -32,5 +38,16 @@ public class ClienteService {
 
   public void deletarCliente(Long id){
     clienteRepository.deleteById(id);
+  }
+
+  public ClienteDTO atualizarCliente(Long id, ClienteDTO clienteDTO){
+    Optional<ClienteModel> clienteExistente = clienteRepository.findById(id);
+    if(clienteExistente.isPresent()){
+      ClienteModel clienteAtualizado = clienteMapper.map(clienteDTO);
+      clienteAtualizado.setId(id);
+      ClienteModel clienteSalvo = clienteRepository.save(clienteAtualizado);
+      return clienteMapper.map(clienteSalvo);
+    }
+    return null;
   }
 }

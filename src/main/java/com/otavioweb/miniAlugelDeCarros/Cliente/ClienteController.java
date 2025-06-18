@@ -21,21 +21,21 @@ public class ClienteController {
 
   //Mostrar todos os cliente (READ)
   @GetMapping("/listar")
-  public List<ClienteModel> listarClientes(){
+  public List<ClienteDTO> listarClientes(){
     return clienteService.listarClientes();
   }
 
   //Mostrar cliente por ID (READ)
   @GetMapping("/listar/{id}")
-  public ClienteModel mostarClientePorId(@PathVariable Long id){
-
+  public ClienteDTO mostarClientePorId(@PathVariable Long id){
     return clienteService.listarClientePorId(id);
   }
 
   //Atualizar cliente (UPDATE)
-  @PutMapping("/alterar")
-  public String alterarClientePorId(){
-    return "Alterado";
+  @PutMapping("/atualizar/{id}")
+  public ClienteDTO alterarClientePorId(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
+
+    return clienteService.atualizarCliente(id, clienteDTO);
   }
 
   //Deletar cliente (DELETE)
