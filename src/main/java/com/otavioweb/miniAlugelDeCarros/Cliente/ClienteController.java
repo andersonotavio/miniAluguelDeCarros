@@ -14,9 +14,8 @@ public class ClienteController {
   }
 
   //Adicionar cliente (CREATE)
-  @PostMapping("/adicionar")
-  public ClienteModel cadastrarCliente(@RequestBody ClienteModel cliente){
-
+  @PostMapping("/cadastrar")
+  public ClienteDTO cadastrarCliente(@RequestBody ClienteDTO cliente){
     return clienteService.cadastrarCliente(cliente);
   }
 

@@ -16,14 +16,14 @@ public class CarroService {
     this.carroRepository = carroRepository;
   }
 
-  // Listar carros
+
   public List<CarroDTO> listarCarros(){
     List<CarroModel> carros = carroRepository.findAll();
     return carros.stream()
             .map(carroMapper::map)
             .collect(Collectors.toList());
   }
-  //Listar carro por ID
+
   public CarroDTO listarCarroPorId(Long id){
     Optional<CarroModel> carroPorId = carroRepository.findById(id);
     return carroPorId.map(carroMapper::map).orElse(null);
