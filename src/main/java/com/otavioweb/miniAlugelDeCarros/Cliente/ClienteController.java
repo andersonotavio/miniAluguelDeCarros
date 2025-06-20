@@ -1,5 +1,10 @@
 package com.otavioweb.miniAlugelDeCarros.Cliente;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -7,41 +12,85 @@ import java.util.List;
 @RestController
 @RequestMapping("cliente")
 public class ClienteController {
-  private ClienteService clienteService;
+  private final ClienteService clienteService;
 
   public ClienteController(ClienteService clienteService) {
     this.clienteService = clienteService;
   }
 
-  //Adicionar cliente (CREATE)
+
   @PostMapping("/cadastrar")
-  public ClienteDTO cadastrarCliente(@RequestBody ClienteDTO cliente){
-    return clienteService.cadastrarCliente(cliente);
+  @Operation(summary = "Cadastra um novo cliente", description = "Rota cadastra um novo cliente e insere no banco de dados")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "201", description = "Cliente cadastrado com sucesso"),
+          @ApiResponse(responseCode = "400", description = "Erro ao cadastrar novo cliente")
+  })
+  public ResponseEntity<String> cadastrarCliente(@RequestBody ClienteDTO cliente){
+    ClienteDTO novoCliente = clienteService.cadastrarCliente(cliente);
+    return ResponseEntity.status(HttpStatus.CREATED)
+            .body("Novo cliente: " +novoCliente.getNome());
   }
 
-  //Mostrar todos os cliente (READ)
+
   @GetMapping("/listar")
-  public List<ClienteDTO> listarClientes(){
-    return clienteService.listarClientes();
+  @Operation(summary = "Lista todos clientes", description = "Rota lista todos os clientes no banco de dados")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Clientes listados"),
+          @ApiResponse(responseCode = "404", description = "Rota não encontrada")
+  })
+  public ResponseEntity<List<ClienteDTO>> listarClientes(){
+    List<ClienteDTO> clientes = clienteService.listarClientes();
+    return ResponseEntity.ok(clientes);
   }
 
-  //Mostrar cliente por ID (READ)
+
   @GetMapping("/listar/{id}")
-  public ClienteDTO mostarClientePorId(@PathVariable Long id){
-    return clienteService.listarClientePorId(id);
+  @Operation(summary = "Lista o cliente por ID", description = "Rota lista um cliente por ID")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Cliente listado"),
+          @ApiResponse(responseCode = "404", description = "Cliente não encontrado")
+  })
+  public ResponseEntity<?> mostarClientePorId(@PathVariable Long id){
+    ClienteDTO cliente = clienteService.listarClientePorId(id);
+    if(cliente != null){
+      return ResponseEntity.ok(cliente);
+    }else{
+      return ResponseEntity.status(HttpStatus.NOT_FOUND)
+              .body("Cliente de ID: " +id+ "não encontrado");
+    }
   }
 
-  //Atualizar cliente (UPDATE)
   @PutMapping("/atualizar/{id}")
-  public ClienteDTO alterarClientePorId(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
-
-    return clienteService.atualizarCliente(id, clienteDTO);
+  @Operation(summary = "Alterar os dados do cliente", description = "Rota altera os dados do cliente por ID")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Cliente alterado"),
+          @ApiResponse(responseCode = "404", description = "Cliente não encontrado"),
+          @ApiResponse(responseCode = "400", description = "Erro ao atualizar cliente")
+  })
+  public ResponseEntity<?> alterarClientePorId(@PathVariable Long id, @RequestBody ClienteDTO clienteDTO){
+    ClienteDTO clienteAtualizado = clienteService.atualizarCliente(id, clienteDTO);
+    if(clienteAtualizado != null){
+      return ResponseEntity.ok(clienteAtualizado);
+    }else{
+      return ResponseEntity.status(HttpStatus.NOT_FOUND)
+              .body("Erro ao atualizar cliente");
+    }
   }
 
-  //Deletar cliente (DELETE)
+
   @DeleteMapping("/deletar/{id}")
-  public String deletarClientePorId(@PathVariable Long id){
-    clienteService.deletarCliente(id);
-    return "Cliente deletado";
+  @Operation(summary = "Deletar cliente", description = "Rota deleta um cliente")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Cliente deletado"),
+          @ApiResponse(responseCode = "400", description = "Erro ao deletar cliente")
+  })
+  public ResponseEntity<?> deletarClientePorId(@PathVariable Long id){
+    ClienteDTO clienteDeletado = clienteService.listarClientePorId(id);
+    if(clienteDeletado != null){
+      return ResponseEntity.ok("Cliente de ID: "+id+" deletado com sucesso");
+    }else{
+      return ResponseEntity.status(HttpStatus.NOT_FOUND)
+              .body("Cliente de ID "+id+ " não encontrado");
+    }
   }
 }
