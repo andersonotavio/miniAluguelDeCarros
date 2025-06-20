@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 
 @Entity
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "clientes")
 public class CarroModel {
 
   @Id
@@ -20,7 +22,7 @@ public class CarroModel {
   private String marca;
   private String modelo;
   private int ano;
-  private String status;
+  private String imgUrl;
   //Um carro tem um unico cliente
   @ManyToOne
   @JoinColumn(name = "cliente_id")

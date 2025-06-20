@@ -15,6 +15,6 @@ public class CarroDTO {
   private String marca;
   private String modelo;
   private int ano;
-  private String status;
+  private String imgUrl;
   private ClienteModel clientes;
 }

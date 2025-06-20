@@ -11,7 +11,7 @@ public class CarroMapper {
     carroModel.setMarca(carroDTO.getMarca());
     carroModel.setModelo(carroDTO.getModelo());
     carroModel.setAno(carroDTO.getAno());
-    carroModel.setStatus(carroDTO.getStatus());
+    carroModel.setImgUrl(carroDTO.getImgUrl());
     carroModel.setClientes(carroDTO.getClientes());
 
     return carroModel;
@@ -24,7 +24,7 @@ public class CarroMapper {
     carroDTO.setMarca(carroModel.getMarca());
     carroDTO.setModelo(carroModel.getModelo());
     carroDTO.setAno(carroModel.getAno());
-    carroDTO.setStatus(carroModel.getStatus());
+    carroDTO.setImgUrl(carroModel.getImgUrl());
     carroDTO.setClientes(carroModel.getClientes());
 
     return carroDTO;
