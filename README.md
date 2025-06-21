@@ -29,7 +29,7 @@ O esquema do banco de dados foi projetado com as seguintes entidades e relaciona
     * `marca`
     * `modelo`
     * `ano`
-    * `status` (Indicando se está disponível, alugado, etc.)
+    * `imagem`
     * **Relacionamento**: Um `Carro` pode ser alugado por **apenas um** `Cliente`.
 
 * **`Cliente`**:
