@@ -1,6 +1,6 @@
 # Sistema mini Aluguel de Carros (Backend)
 
-Este projeto é uma aplicação backend para um sistema de aluguel de carros, desenvolvida utilizando Spring Boot. Ele permite o gerenciamento de carros e clientes, com um foco na relação de aluguel.
+Este projeto é uma aplicação backend para um sistema de aluguel de carros, desenvolvida utilizando Spring Boot. Ele permite o gerenciamento de carros e clientes, com um foco na relação de aluguel. Agora também inclui uma API de busca de vagas de emprego.
 
 ---
 
@@ -38,6 +38,15 @@ O esquema do banco de dados foi projetado com as seguintes entidades e relaciona
     * `email`
     * **Relacionamento**: Um `Cliente` pode alugar **vários** `Carros`.
 
+* **`Job`**:
+    * `id` (Chave Primária)
+    * `title`
+    * `company`
+    * `location`
+    * `description`
+    * `type`
+    * `level`
+
 Isso estabelece uma relação de **um-para-muitos** de `Cliente` para `Carro`.
 
 ---
@@ -74,6 +83,45 @@ Certifique-se de ter o seguinte instalado:
     ```
 
 A aplicação será iniciada e o banco de dados H2 será criado em memória. Você poderá acessar a console do H2 (se configurado para isso) e os endpoints da API (geralmente em `http://localhost:8080`).
+
+---
+
+## 📋 API de Vagas de Emprego
+
+A aplicação inclui endpoints para gerenciar e buscar vagas de emprego, especialmente focada em vagas de Front End no Brasil.
+
+### Endpoints disponíveis:
+
+* **GET** `/job/` - Mensagem de boas-vindas
+* **GET** `/job/listar` - Lista todas as vagas
+* **GET** `/job/listar/{id}` - Busca uma vaga específica por ID
+* **GET** `/job/buscar/localizacao/{location}` - Busca vagas por localização (ex: `/job/buscar/localizacao/Brazil`)
+* **GET** `/job/buscar/titulo/{title}` - Busca vagas por título (ex: `/job/buscar/titulo/front`)
+* **POST** `/job/adicionar` - Adiciona uma nova vaga
+* **PUT** `/job/alterar/{id}` - Atualiza uma vaga existente
+* **DELETE** `/job/deletar/{id}` - Remove uma vaga
+
+### Exemplo de uso:
+
+```bash
+# Buscar vagas de Front End no Brasil
+curl http://localhost:8080/job/buscar/titulo/front
+
+# Buscar vagas no Brasil
+curl http://localhost:8080/job/buscar/localizacao/Brazil
+
+# Adicionar uma nova vaga
+curl -X POST http://localhost:8080/job/adicionar \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Front End Developer",
+    "company": "Tech Brasil LTDA",
+    "location": "São Paulo, Brazil",
+    "description": "Desenvolvedor Front End para trabalhar com React",
+    "type": "Full-time",
+    "level": "Pleno"
+  }'
+```
 
 ---
 
